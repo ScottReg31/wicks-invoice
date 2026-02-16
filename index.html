@@ -183,7 +183,7 @@ input[type=number] { -moz-appearance: textfield; }
             </tr>
             <tr class="border-b border-gray-100">
               <td class="py-3 pr-4 font-medium">Prime Charge</td>
-              <td class="py-3 pr-4"><input type="number" step="any" id="primeQty" oninput="calc()" placeholder="0" class="w-full px-2 py-1.5 border border-gray-300 rounded text-sm"> <span class="text-xs text-gray-400">qty</span></td>
+              <td class="py-3 pr-4"><input type="number" step="any" id="primeQty" oninput="calc()" placeholder="0" class="w-full px-2 py-1.5 border border-gray-300 rounded text-sm"> <span class="text-xs text-gray-400">Qty</span></td>
               <td class="py-3 pr-4"><div class="flex items-center gap-1">$<input type="number" step="any" id="primeAmt" oninput="calc()" placeholder="0.00" class="w-full px-2 py-1.5 border border-gray-300 rounded text-sm"></div></td>
               <td class="py-3 text-right font-semibold" id="primeTotal">$0.00</td>
             </tr>
@@ -533,10 +533,10 @@ function generatePDF() {
   // === LINE ITEMS TABLE ===
   y += 8;
   const lineItems = [];
-  if (belt > 0) lineItems.push(['Belting', num('beltHrs') + ' hrs', fmt(num('beltRate')) + '/hr', fmt(belt)]);
-  if (trip > 0) lineItems.push(['Trip Charge', num('tripHrs') + ' hrs', fmt(num('tripRate')) + '/hr', fmt(trip)]);
-  if (minC > 0) lineItems.push(['Minimum Charge', num('minHrs') + ' hrs', fmt(num('minRate')) + '/hr', fmt(minC)]);
-  if (ot > 0) lineItems.push(['Overtime', num('otHrs') + ' hrs', fmt(num('otRate')) + '/hr', fmt(ot)]);
+  if (belt > 0) lineItems.push(['Belting', num('beltHrs') + ' Hrs', fmt(num('beltRate')) + '/Hr', fmt(belt)]);
+  if (trip > 0) lineItems.push(['Trip Charge', num('tripHrs') + ' Hrs', fmt(num('tripRate')) + '/Hr', fmt(trip)]);
+  if (minC > 0) lineItems.push(['Minimum Charge', num('minHrs') + ' Hrs', fmt(num('minRate')) + '/Hr', fmt(minC)]);
+  if (ot > 0) lineItems.push(['Overtime', num('otHrs') + ' Hrs', fmt(num('otRate')) + '/Hr', fmt(ot)]);
   if (prime > 0) lineItems.push(['Prime Charge', num('primeQty').toString(), fmt(num('primeAmt')), fmt(prime)]);
 
   // Add description as first row context
