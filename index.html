@@ -397,7 +397,7 @@ function autoDueDate() {
   const inv = document.getElementById('invoiceDate').value;
   if (!inv) return;
   const d = new Date(inv + 'T00:00:00');
-  d.setDate(d.getDate() + 30);
+  d.setMonth(d.getMonth() + 1);
   document.getElementById('dueDate').value = d.toISOString().split('T')[0];
 }
 
