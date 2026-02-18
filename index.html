@@ -65,7 +65,7 @@ input[type=number] { -moz-appearance: textfield; }
       <h2 class="text-lg font-bold mb-3">Invoice Type</h2>
       <div class="flex justify-center gap-3">
         <button id="btnTelebelt" class="mode-btn active" onclick="setMode('telebelt')">Telebelt</button>
-        <button id="btnWicks" class="mode-btn inactive" onclick="setMode('wicks')">Wicks</button>
+        <button id="btnWicks" class="mode-btn inactive" onclick="setMode('wicks')">Other</button>
       </div>
     </div>
 
@@ -142,7 +142,7 @@ input[type=number] { -moz-appearance: textfield; }
           <label class="block text-sm font-medium text-gray-600 mb-1">Job Address / Location</label>
           <input type="text" id="jobAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm" placeholder="e.g. New Hampton">
         </div>
-        <div>
+        <div id="operatorField">
           <label class="block text-sm font-medium text-gray-600 mb-1">Operator</label>
           <input type="text" id="operator" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm" placeholder="e.g. Troy">
         </div>
@@ -150,7 +150,7 @@ input[type=number] { -moz-appearance: textfield; }
           <label class="block text-sm font-medium text-gray-600 mb-1">Description</label>
           <input type="text" id="description" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm" placeholder="e.g. Material Placement - Rembrandt Foods">
         </div>
-        <div>
+        <div id="yardsField">
           <label class="block text-sm font-medium text-gray-600 mb-1">Yards Belted</label>
           <input type="number" step="any" id="yardsBelted" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm" placeholder="0">
         </div>
@@ -284,6 +284,8 @@ function setMode(mode) {
   document.getElementById('btnWicks').className = 'mode-btn ' + (mode === 'wicks' ? 'active' : 'inactive');
   document.getElementById('telebeltBilling').classList.toggle('hidden', mode !== 'telebelt');
   document.getElementById('wicksBilling').classList.toggle('hidden', mode !== 'wicks');
+  document.getElementById('operatorField').classList.toggle('hidden', mode !== 'telebelt');
+  document.getElementById('yardsField').classList.toggle('hidden', mode !== 'telebelt');
   // Clear billing fields on switch
   if (mode === 'telebelt') {
     clearWicksBilling();
@@ -604,8 +606,8 @@ function generatePDF() {
   // Draw borders individually so they're all equally visible
   doc.line(ml, 0.5, pw - mr, 0.5);       // top
   doc.line(ml, 38, pw - mr, 38);          // bottom
-  doc.line(ml, 0, ml, 38);               // left
-  doc.line(pw - mr, 0, pw - mr, 38);     // right
+  doc.line(ml, 0.5, ml, 38);             // left
+  doc.line(pw - mr, 0.5, pw - mr, 38);   // right
 
   // Logo in header
   try {
@@ -723,11 +725,16 @@ function generatePDF() {
       textColor: [30, 30, 30],
       cellPadding: { top: 4, bottom: 4, left: 4, right: 4 }
     },
-    columnStyles: {
+    columnStyles: invoiceMode === 'telebelt' ? {
       0: { cellWidth: 55, fontStyle: 'bold', halign: 'left' },
       1: { cellWidth: 35, halign: 'center' },
       2: { cellWidth: 40, halign: 'center' },
       3: { cellWidth: 40, halign: 'right', fontStyle: 'bold' }
+    } : {
+      0: { cellWidth: 75, fontStyle: 'bold', halign: 'left' },
+      1: { cellWidth: 25, halign: 'center' },
+      2: { cellWidth: 35, halign: 'center' },
+      3: { cellWidth: 35, halign: 'right', fontStyle: 'bold' }
     },
     margin: { left: ml, right: mr },
     tableLineColor: [230, 230, 230],
