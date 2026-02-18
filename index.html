@@ -603,11 +603,8 @@ function generatePDF() {
   doc.rect(0, 0, pw, 38, 'F');
   doc.setDrawColor(25, 25, 25);
   doc.setLineWidth(0.8);
-  // Draw borders individually so they're all equally visible
-  doc.line(ml, 0.5, pw - mr, 0.5);       // top
-  doc.line(ml, 38, pw - mr, 38);          // bottom
-  doc.line(ml, 0.5, ml, 38);             // left
-  doc.line(pw - mr, 0.5, pw - mr, 38);   // right
+  // Draw border as a full-width rectangle outline
+  doc.rect(0, 0, pw, 38, 'S');
 
   // Logo in header
   try {
