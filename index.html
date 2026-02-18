@@ -60,12 +60,19 @@ input[type=number] { -moz-appearance: textfield; }
   <!-- Form -->
   <div class="max-w-4xl mx-auto w-full px-6 py-8 fade-in">
 
-    <!-- Invoice Type Toggle -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6 text-center">
-      <h2 class="text-lg font-bold mb-3">Invoice Type</h2>
-      <div class="flex justify-center gap-3">
-        <button id="btnTelebelt" class="mode-btn active" onclick="setMode('telebelt')">Telebelt</button>
-        <button id="btnWicks" class="mode-btn inactive" onclick="setMode('wicks')">Other</button>
+    <!-- Invoice Type Toggle + Clear -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-bold mb-2">Invoice Type</h2>
+          <div class="flex gap-3">
+            <button id="btnTelebelt" class="mode-btn active" onclick="setMode('telebelt')">Telebelt</button>
+            <button id="btnWicks" class="mode-btn inactive" onclick="setMode('wicks')">Other</button>
+          </div>
+        </div>
+        <button onclick="resetForm()" class="bg-white text-gray-700 border border-gray-300 px-6 py-3 rounded-xl text-base font-semibold hover:bg-gray-100 transition-colors shadow-sm">
+          🔄 Clear Form
+        </button>
       </div>
     </div>
 
@@ -258,9 +265,6 @@ input[type=number] { -moz-appearance: textfield; }
 
     <!-- Actions -->
     <div class="flex justify-center gap-4 mb-12">
-      <button onclick="resetForm()" class="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition-colors shadow-sm">
-        🔄 Clear Form
-      </button>
       <button onclick="generatePDF()" class="bg-black text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-gray-800 transition-colors shadow-lg">
         📄 Generate Invoice PDF
       </button>
